@@ -12,7 +12,7 @@ wasmparser = "=0.104.0"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 sha2 = "0.10"
-clap = { version = "3.2", features = ["derive"] }
+clap = { version = "4.6", features = ["derive"] }
 
 [dev-dependencies]
 wat = "1"
