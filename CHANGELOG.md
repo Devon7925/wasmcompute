@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — initial public release candidate
+## 0.1.0 — initial public preview
 
 - Rust WebAssembly-to-mcfunction compiler for Minecraft 26.3-rc-1.
 - Datapack-shaped Rust sources and a flat command SDK, including command blocks.
@@ -11,5 +11,5 @@
 - 0BSD for original code, preserved third-party licenses, portable compiler
   bundles, Windows/Linux CI and a clean source export.
 
-Compatibility is limited to the contracts in docs/. This candidate has not been
-published to GitHub or crates.io by the release preparation tooling.
+Compatibility is limited to the contracts in docs/. Published source and downloads are available on
+[GitHub](https://github.com/Devon7925/wasmcompute). The crate is not published to crates.io.

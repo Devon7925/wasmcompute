@@ -5,6 +5,7 @@ edition = "2021"
 autoexamples = false
 description = "WebAssembly AOT compiler for Minecraft native compute, macros, and return run"
 license = "0BSD"
+repository = "https://github.com/Devon7925/wasmcompute"
 
 [dependencies]
 anyhow = "1"
