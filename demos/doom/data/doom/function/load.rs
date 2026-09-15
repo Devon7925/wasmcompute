@@ -1,0 +1,1 @@
+pub fn main()->i32 {doom_demo::clear();minecraft::commands! {"scoreboard objectives add doom_reset trigger";"scoreboard objectives add doom_pause trigger";"scoreboard objectives add doom_weapon trigger";"tag @a remove doom_player";}0}

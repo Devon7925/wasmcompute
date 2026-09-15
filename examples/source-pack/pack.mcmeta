@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "Rust functions, native resources and Serde config example",
+    "min_format": [121, 0],
+    "max_format": [121, 0]
+  }
+}

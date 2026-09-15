@@ -1,0 +1,20 @@
+{
+  "clang": "clang version 18.1.8",
+  "flags": [
+    "--target=wasm32",
+    "-O2",
+    "-flto",
+    "-ffp-contract=off",
+    "-fno-builtin",
+    "-nostdlib",
+    "-DSOFTFLOAT_FAST_INT64",
+    "-DINLINE_LEVEL=5",
+    "-DSOFTFLOAT_ROUND_ODD",
+    "-I.",
+    "-Ivendor/softfloat/include",
+    "-Ivendor/softfloat/8086-SSE"
+  ],
+  "helper_base": 2147418112,
+  "helper_stack_bytes": 16384,
+  "wasm_sha256": "c1684a8bc55173d57dbe9013a710a5bdde0f77169e611a46b674325df046e493"
+}

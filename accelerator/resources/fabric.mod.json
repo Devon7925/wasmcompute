@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "wasmcompute",
+  "version": "0.1.0",
+  "name": "Wasmcompute Accelerator",
+  "description": "Pure-Java Wasm acceleration for generated datapack functions",
+  "environment": "server",
+  "license": "0BSD",
+  "mixins": [
+    "wasmcompute.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3-rc.1",
+    "java": ">=25"
+  }
+}

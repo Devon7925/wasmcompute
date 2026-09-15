@@ -1,0 +1,10 @@
+[package]
+name = "doom_demo"
+version = "0.1.0"
+edition = "2021"
+publish = false
+build = "build.rs"
+[lib]
+path = "lib.rs"
+[dependencies]
+minecraft = { path = "../../sdk/rust/minecraft" }

@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "manual_start": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "rewards": {
+    "function": "arena:start"
+  }
+}

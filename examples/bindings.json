@@ -1,0 +1,10 @@
+{
+  "minecraft.fill_platform": {
+    "command": "fill ~ ~-1 ~ ~$(a0) ~-1 ~$(a0) minecraft:stone",
+    "capture": "result"
+  },
+  "minecraft.set_health": {
+    "command": "data modify entity @s Health set value $(a0)f",
+    "capture": "success"
+  }
+}

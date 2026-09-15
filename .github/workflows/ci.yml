@@ -1,0 +1,108 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  compiler:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    env:
+      CARGO_BUILD_JOBS: 2
+      CARGO_PROFILE_DEV_DEBUG: 0
+      CARGO_PROFILE_TEST_DEBUG: 0
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - name: Install pinned Rust and Wasm target
+        run: rustup toolchain install 1.92.0 --profile minimal --component rustfmt --target wasm32-unknown-unknown
+      - name: Select Rust
+        run: rustup override set 1.92.0
+      - name: Format compiler
+        run: cargo fmt --all -- --check
+      - name: Format SDK
+        run: cargo fmt --manifest-path sdk/rust/minecraft-macros/Cargo.toml -- --check
+      - name: Compiler tests
+        run: cargo test --locked -j 2
+      - name: SDK macro tests
+        run: cargo test --manifest-path sdk/rust/minecraft-macros/Cargo.toml --locked -j 2
+      - name: Release checks
+        run: python tools/check_release.py --public-tree
+      - name: Build compiler
+        run: cargo build --release --locked -j 2
+      - name: End-to-end source-pack builds
+        shell: bash
+        run: |
+          binary=target/release/wasmcompute
+          if [ "$RUNNER_OS" = Windows ]; then binary="$binary.exe"; fi
+          python tools/ci_smoke.py --compiler "$binary"
+          python tools/package_release.py --binary "$binary" --output "dist/wasmcompute-${RUNNER_OS}-x64.zip"
+          python tools/verify_bundle.py --archive "dist/wasmcompute-${RUNNER_OS}-x64.zip" --offline
+      - name: Upload compiler with SDK and sources
+        uses: actions/upload-artifact@v7
+        with:
+          name: wasmcompute-${{ runner.os }}-x64
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14
+  accelerator-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "25"
+      - name: Build universal Fabric jar
+        run: python tools/build_accelerator.py --jdk "$JAVA_HOME" --build target/fabric-build --output dist/wasmcompute-accelerator-0.1.0.jar
+      - uses: actions/upload-artifact@v7
+        with:
+          name: wasmcompute-accelerator-universal
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 14
+  accelerator-test:
+    needs: accelerator-build
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "25"
+      - uses: actions/download-artifact@v8
+        with:
+          name: wasmcompute-accelerator-universal
+          path: dist
+      - name: Test the identical jar on both operating systems
+        shell: bash
+        run: python tools/test_accelerator.py --jdk "$JAVA_HOME" --jar dist/wasmcompute-accelerator-0.1.0.jar --build target/accelerator-tests

@@ -1,0 +1,12 @@
+[package]
+name = "arena_helpers"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+serde = { version = "=1.0.162", default-features = false, features = ["derive"] }
+serde-json-core = "=0.6.0"

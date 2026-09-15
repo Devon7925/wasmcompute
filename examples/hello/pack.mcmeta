@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": "Hello from Rust and wasmcompute",
+    "min_format": 121,
+    "max_format": 121
+  }
+}

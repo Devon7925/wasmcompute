@@ -1,0 +1,7 @@
+{
+  "wasm_sha256": "c95f124973ad0bb2848bfc1dfd064ce9c18054929b3648eb3fafe5300d68de32",
+  "compiler_sha256": "f031a1cc8961ffcfc5dead7301513b8db6fc604700f347b69be1ed93091418ef",
+  "training_frames": 180,
+  "copies": 28,
+  "gpu_used": false
+}

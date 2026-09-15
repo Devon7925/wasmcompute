@@ -1,0 +1,22 @@
+[package]
+name = "wasmcompute"
+version = "0.1.0"
+edition = "2021"
+autoexamples = false
+description = "WebAssembly AOT compiler for Minecraft native compute, macros, and return run"
+license = "0BSD"
+
+[dependencies]
+anyhow = "1"
+wasmparser = "=0.104.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+clap = { version = "3.2", features = ["derive"] }
+
+[dev-dependencies]
+wat = "1"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1

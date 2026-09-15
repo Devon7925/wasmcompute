@@ -1,0 +1,9 @@
+[package]
+name = "minecraft"
+version = "0.1.0"
+edition = "2021"
+license = "0BSD"
+description = "Flat Minecraft command interface for wasmcompute source packs"
+
+[dependencies]
+minecraft-macros = { path = "../minecraft-macros" }

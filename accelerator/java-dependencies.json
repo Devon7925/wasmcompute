@@ -1,0 +1,50 @@
+[
+  {
+    "group": "org.ow2.asm",
+    "artifact": "asm",
+    "version": "9.9.1",
+    "sha256": "6f3828a215c920059a5efa2fb55c233d6c54ec5cadca99ce1b1bdd10077c7ddd"
+  },
+  {
+    "group": "org.ow2.asm",
+    "artifact": "asm-analysis",
+    "version": "9.9.1",
+    "sha256": "6260bffc8ec008dd1b713702c7994e2c94d188a3da5bef9e87278a16df6a7522"
+  },
+  {
+    "group": "org.ow2.asm",
+    "artifact": "asm-commons",
+    "version": "9.9.1",
+    "sha256": "c2319e014ce7199f2b7f7d56d6bb991863168c3f4b6cd6c9f542a4937ef7ef88"
+  },
+  {
+    "group": "org.ow2.asm",
+    "artifact": "asm-tree",
+    "version": "9.9.1",
+    "sha256": "0f3555096b720b820bbacab0b515589bee0200bee099bda14c561738ae837ba1"
+  },
+  {
+    "group": "org.ow2.asm",
+    "artifact": "asm-util",
+    "version": "9.9.1",
+    "sha256": "c5ebbbeaf68126af094b42fa4800f59bc4413abd02d95b9aefad722cd257e207"
+  },
+  {
+    "group": "com.dylibso.chicory",
+    "artifact": "compiler",
+    "version": "1.7.5",
+    "sha256": "1a54cc0b3a79aa914f7f2fa5e7b7ed902702f3ce7aa155ec0cfc74b386a97377"
+  },
+  {
+    "group": "com.dylibso.chicory",
+    "artifact": "runtime",
+    "version": "1.7.5",
+    "sha256": "cdbb2bd4e353eacff78da5dd3454694316eaa6d2950aab3d1517dca41ae4a0b2"
+  },
+  {
+    "group": "com.dylibso.chicory",
+    "artifact": "wasm",
+    "version": "1.7.5",
+    "sha256": "16558a66bac04f7e00ea06950f52d87ce2cfff535a54bac2115f2c13e0b3050b"
+  }
+]
